@@ -2,6 +2,9 @@
 
 import simple_draw as sd
 
+sd.resolution = (1200, 600)
+
+
 # Часть 1.
 # Написать функции рисования равносторонних геометрических фигур:
 # - треугольника
@@ -28,7 +31,36 @@ import simple_draw as sd
 # Результат решения см lesson_004/results/exercise_01_shapes.jpg
 
 # TODO здесь ваш код
+def triangle(point, leng):
+    new_point = point
+    print(new_point is point)
+    for i in range(0, 3):
+        vector = sd.get_vector(new_point, 120 + 120 * i, length=leng)
+        vector.draw()
+        new_point = vector.end_point
 
+
+def square(point, leng):
+    new_point = point
+    print(new_point is point)
+    for i in range(0, 4):
+        vector = sd.get_vector(new_point, 90 + 90 * i, length=leng)
+        vector.draw()
+        new_point = vector.end_point
+
+def pentagon(point, leng):
+    new_point = point
+    print(new_point is point)
+    for i in range(0, 4):
+        vector = sd.get_vector(new_point, 90 + 108 * i, length=leng)
+        vector.draw()
+
+        new_point = vector.end_point
+
+
+#triangle(point=sd.get_point(100, 100), leng=50)
+#square(point=sd.get_point(200, 200), leng=50)
+pentagon(point=sd.get_point(200, 200), leng=50)
 # Часть 1-бис.
 # Попробуйте прикинуть обьем работы, если нужно будет внести изменения в этот код.
 # Скажем, связывать точки не линиями, а дугами. Или двойными линиями. Или рисовать круги в угловых точках. Или...
