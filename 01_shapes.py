@@ -31,36 +31,47 @@ sd.resolution = (1200, 600)
 # Результат решения см lesson_004/results/exercise_01_shapes.jpg
 
 # TODO здесь ваш код
-def triangle(point, leng):
+def triangle(point, leng, angle):
     new_point = point
     print(new_point is point)
     for i in range(0, 3):
-        vector = sd.get_vector(new_point, 120 + 120 * i, length=leng)
+        vector = sd.get_vector(new_point, angle * i, length=leng)
         vector.draw()
         new_point = vector.end_point
+    sd.line(start_point=new_point, end_point=point)
 
-
-def square(point, leng):
+def square(point, leng, angle):
     new_point = point
     print(new_point is point)
     for i in range(0, 4):
-        vector = sd.get_vector(new_point, 90 + 90 * i, length=leng)
+        vector = sd.get_vector(new_point, angle * i, length=leng)
         vector.draw()
         new_point = vector.end_point
+    sd.line(start_point=new_point, end_point=point)
 
-def pentagon(point, leng):
+def pentagon(point, leng, angle):
     new_point = point
     print(new_point is point)
-    for i in range(0, 4):
-        vector = sd.get_vector(new_point, 90 + 108 * i, length=leng)
+    for i in range(0, 5):
+        vector = sd.get_vector(new_point, angle * i, length=leng)
         vector.draw()
-
         new_point = vector.end_point
+    sd.line(start_point=new_point, end_point=point)
+
+def hexagon(point, leng, angle):
+    new_point = point
+    print(new_point is point)
+    for i in range(0, 6):
+        vector = sd.get_vector(new_point, angle * i, length=leng)
+        vector.draw()
+        new_point = vector.end_point
+    sd.line(start_point=new_point, end_point=point)
 
 
-#triangle(point=sd.get_point(100, 100), leng=50)
-#square(point=sd.get_point(200, 200), leng=50)
-pentagon(point=sd.get_point(200, 200), leng=50)
+triangle(point=sd.get_point(100, 100), leng=50, angle=120)
+square(point=sd.get_point(200, 200), leng=50, angle=90)
+pentagon(point=sd.get_point(300, 300), leng=50, angle=72)
+hexagon(point=sd.get_point(400, 400), leng=50, angle=60)
 # Часть 1-бис.
 # Попробуйте прикинуть обьем работы, если нужно будет внести изменения в этот код.
 # Скажем, связывать точки не линиями, а дугами. Или двойными линиями. Или рисовать круги в угловых точках. Или...
