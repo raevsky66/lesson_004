@@ -30,43 +30,25 @@ sd.resolution = (1200, 600)
 # sd.line()
 # Результат решения см lesson_004/results/exercise_01_shapes.jpg
 
-# TODO здесь ваш код
 def triangle(point, leng, angle):
-    new_point = point
-    print(new_point is point)
-    for i in range(0, 3):
-        vector = sd.get_vector(new_point, angle * i, length=leng)
-        vector.draw()
-        new_point = vector.end_point
-    sd.line(start_point=new_point, end_point=point)
+    figure(point=point, leng=leng, angle=angle, number_of_points=3)
 
 def square(point, leng, angle):
-    new_point = point
-    print(new_point is point)
-    for i in range(0, 4):
-        vector = sd.get_vector(new_point, angle * i, length=leng)
-        vector.draw()
-        new_point = vector.end_point
-    sd.line(start_point=new_point, end_point=point)
+    figure(point=point, leng=leng, angle=angle, number_of_points=4)
 
 def pentagon(point, leng, angle):
-    new_point = point
-    print(new_point is point)
-    for i in range(0, 5):
-        vector = sd.get_vector(new_point, angle * i, length=leng)
-        vector.draw()
-        new_point = vector.end_point
-    sd.line(start_point=new_point, end_point=point)
+    figure(point=point, leng=leng, angle=angle, number_of_points=5)
 
 def hexagon(point, leng, angle):
+    figure(point=point,leng=leng,angle=angle,number_of_points=6)
+
+def figure(point, leng, angle, number_of_points):
     new_point = point
-    print(new_point is point)
-    for i in range(0, 6):
+    for i in range(0, number_of_points-1):
         vector = sd.get_vector(new_point, angle * i, length=leng)
         vector.draw()
         new_point = vector.end_point
     sd.line(start_point=new_point, end_point=point)
-
 
 triangle(point=sd.get_point(100, 100), leng=50, angle=120)
 square(point=sd.get_point(200, 200), leng=50, angle=90)
