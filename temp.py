@@ -1,29 +1,46 @@
-html_dom = {
-    'html': {
-        'head': {
-            'title': 'Колобок',
-        },
-        'body': {
-            'h2': 'Привет!',
-            'div': 'Хочешь, я расскажу тебе сказку?',
-            'p': 'Жили-были старик со старухой...',
-        }
-    }
-}
+import turtle
+
+WIDTH = 15
+BRANCH_LENGTH = 120
+ROTATION_LENGTH = 27
 
 
-def find_element(tree, element_name):
-    if element_name in tree:
-        return tree[element_name]
-    for key, sub_tree in tree.items():
-        if isinstance(sub_tree, dict):
-            result = find_element(tree=sub_tree, element_name=element_name)
-            if result:
-                break
-    else:
-        result = None
-    return result
+class Tree_Fractal(turtle.Turtle):
+    def __init__(self, level):
+        super(Tree_Fractal, self).__init__()
+        self.level = level
+        self.hideturtle()
+        self.speed('fastest')
+        self.left(90)
+        self.width(WIDTH)
+        self.penup()
+        self.back(BRANCH_LENGTH * 1.5)
+        self.pendown()
+        self.forward(BRANCH_LENGTH)
+        self.draw_tree(BRANCH_LENGTH, level)
+
+    def draw_tree(self, branch_length, level):
+        width = self.width()
+        self.width(width * 3. / 4.)
+        branch_length *= 3. / 4.
+        self.left(ROTATION_LENGTH)
+        self.forward(branch_length)
+
+        if level > 0:
+            self.draw_tree(branch_length, level - 1)
+        self.back(branch_length)
+        self.right(2 * ROTATION_LENGTH)
+        self.forward(branch_length)
+
+        if level > 0:
+            self.draw_tree(branch_length, level - 1)
+        self.back(branch_length)
+        self.left(ROTATION_LENGTH)
+
+        self.width(width)
 
 
-res = find_element(tree=html_dom, element_name='div')
-print(res)
+if __name__ == '__main__':
+    tree_level = 11  # choose
+    tree = Tree_Fractal(tree_level)
+    turtle.done()
