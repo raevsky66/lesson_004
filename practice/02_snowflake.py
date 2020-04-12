@@ -13,26 +13,37 @@ x = 100
 
 y2 = 450
 x2 = 150
-while True:
-    sd.clear_screen()
-    point = sd.get_point(x, y)
-    sd.snowflake(center=point, length=50)
-    y -= 10
-    if y < 50:
-       break
-    x = x + 10
 
-    point2 = sd.get_point(x2, y2)
-    sd.snowflake(center=point2, length=30)
-    y2 -= 10
-    if y2 < 50:
-       break
-    x2 = x2 + 20
+point = sd.get_point(x, y)
+point2 = sd.get_point(x2, y2)
+
+sd.start_drawing()
+
+while True:
+#    sd.clear_screen()
+    if y > 50:
+        sd.snowflake(center=point, length=50, color=sd.background_color)
+        point = sd.get_point(x, y)
+        sd.snowflake(center=point, length=50)
+        y -= 1
+
+    x = x + 1
+
+    if y2 > 30:
+        sd.snowflake(center=point2, length=30, color=sd.background_color)
+        point2 = sd.get_point(x2, y2)
+        sd.snowflake(center=point2, length=30)
+        y2 -= 6
+
+    x2 = x2 + 3
+
+    if y2<30 and y<50:
+        break
 
     sd.sleep(0.1)
     if sd.user_want_exit():
         break
-
+    sd.finish_drawing()
 # реализовать падение одной снежинки из произвольного места экрана
 
 # реализовать падение одной снежинки с ветром - смещение в сторону
